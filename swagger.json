@@ -1,0 +1,83 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Simple Product CRUD",
+      "description": "Demo Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8888",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Products",
+        "description": "API for users in the system"
+      }
+    ],
+    "paths": {
+      "/api/products": {
+        "get": {
+          "tags": ["Products"],
+          "summary": "Get all produtcs in system",
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api/products/add": {
+        "post": {
+          "tags": ["Products"],
+          "summary": "Create new product",
+          "description": "Create new Product in system",
+          "parameters": [
+            {
+              "name": "product name",
+              "in": "body",
+              "description": "User that we want to create"
+            }
+          ],
+          "produces": ["application/json"],
+          "responses": {
+            "200": {
+              "description": "New Product is created"
+            }
+          }
+        }
+      },
+      "/api/products/{id}": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of product that we want to find",
+            "type": "string"
+          }
+        ],
+        "patch": {
+          "summary": "Update product with give ID",
+          "tags": ["Products"],
+          "parameters": [
+            {
+              "name": "Product",
+              "in": "body",
+              "description": "Product with new values of properties"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Product is updated"
+            }
+          }
+        }
+      }
+    },
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"]
+}

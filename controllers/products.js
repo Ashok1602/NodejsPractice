@@ -5,7 +5,8 @@ exports.addProduct = (req, res) => {
    const product = new Product({
        name: req.body.name,
        price: req.body.price,
-       description: req.body.description
+       description: req.body.description,
+       isnew: req.body.isnew
    });
    product
     .save()
