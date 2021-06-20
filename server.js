@@ -1,8 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+
 const userRouters = require('./routes/users');
 const productRouters = require('./routes/products');
+const tutorialRouters = require('./routes/tutorial');
+
 const path = require('path');
 const sendMail = require('./sendMail');
 
@@ -35,6 +38,9 @@ app.get('/user', userRouters);
 
 //products routes 
 app.use('/api/products', productRouters);
+
+//tutorila routes
+app.use('/tutorial', tutorialRouters);
 
 //html example
 app.get('/html', (req, res) => {
