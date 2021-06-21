@@ -1,10 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const cors = require("cors");
 
 const userRouters = require('./routes/users');
 const productRouters = require('./routes/products');
 const tutorialRouters = require('./routes/tutorial');
+
+
+var corsOptions = {
+      origin: "http://localhost:8888"
+};
+    
+app.use(cors(corsOptions));
 
 const path = require('path');
 const sendMail = require('./sendMail');
@@ -40,7 +48,7 @@ app.get('/user', userRouters);
 app.use('/api/products', productRouters);
 
 //tutorila routes
-app.use('/tutorial', tutorialRouters);
+app.use('/api/tutorial', tutorialRouters);
 
 //html example
 app.get('/html', (req, res) => {
