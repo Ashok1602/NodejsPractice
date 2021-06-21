@@ -1,5 +1,8 @@
 import { TUTORIAL_CONST } from "../actions/actionTypes";
-export default function reducer(state = {}, action) {
+export default function reducer(state = {
+  updateTutorialSuccess: null, 
+  deleteTutorialSuccess: null
+}, action) {
   // eslint-disable-next-line default-case
   switch (action.type) {
     case TUTORIAL_CONST.ADD_TUTORIAL_REQUEST:

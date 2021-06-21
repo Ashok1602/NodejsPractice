@@ -77,7 +77,7 @@ export function getByIdTutorial(id) {
       .then((response) => {
         if (response.isSuccess) {
           dispatch(
-            base.getSuccess(TUTORIAL_CONST.ADD_TUTORIAL_SUCCESS, {
+            base.getSuccess(TUTORIAL_CONST.GET_TUTORIAL_BY_ID_SUCCESS, {
               response: {
                 statusCode: 200,
                 data: response,
@@ -154,11 +154,11 @@ export function getAllTutorial() {
 }
 
 // action for update Tutorial
-export function editTutorial(id) {
+export function editTutorial(id, formdata) {
   return (dispatch) => {
     dispatch(base.getRequest(TUTORIAL_CONST.UPDATE_TUTORIAL_REQUEST));
     AXIOS_INSTANCE.patch(
-      `${BASE_URL}/${id}`
+      `${BASE_URL}/${id}`, formdata
     )
       .then(checkHttpStatus)
       .then(parseJSON)

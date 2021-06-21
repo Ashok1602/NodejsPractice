@@ -4,7 +4,7 @@ import {addTutorial} from '../actions/tutorialAction';
 
 function AddTutorial() {
     const dispatch = useDispatch();
-    const [formValues,updateFormValues] = useState({title: "", descrition: ""})
+    const [formValues,updateFormValues] = useState({title: "", description: ""})
     const submit = (e) => {
     e.preventDefault();
      formValues.published = false;
@@ -26,7 +26,7 @@ function AddTutorial() {
             id='Description'
             style={{ height: '100px' }}
             value={formValues.descrition}
-            onChange={e => updateFormValues({...formValues, descrition: e.target.value})}
+            onChange={e => updateFormValues({...formValues, description: e.target.value})}
           ></textarea>
         </div>
         <div class='mb-3 form-check'>
