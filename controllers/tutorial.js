@@ -102,6 +102,26 @@ exports.getTutoriales = (req, res) => {
         res.status(500).json({ error: error, isSuccess: false });
       });
   };
+
+
+  //controller for get tutorial by Title
+ exports.getTutorialByTitle = (req, res, next) => {
+  let query = { title: `/${req.params.title}/i`  };
+  Tutorial.find(query)
+    .then((result) => {
+      if (result) {
+        res.status(200).json({data: result, isSuccess: true});
+      } else {
+        res
+          .status(400)
+          .json({ message: id + " not existed,Please try another one", isSuccess: false });
+      }
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error, isSuccess: "getByTitle" });
+    });
+};
+
   
   //controller for update tutorial by id
   exports.updateTutorial = (req, res, next) => {

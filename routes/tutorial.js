@@ -7,6 +7,8 @@ router.get('/', TutorialController.getTutoriales);
 
 router.get('/:tutorialId', TutorialController.getTutorialById);
 
+router.get('/getTutorialByTitle/:title', TutorialController.getTutorialByTitle);
+
 router.post('/add', TutorialController.addTutorial);
 
 router.patch('/:tutorialId', TutorialController.updateTutorial);
