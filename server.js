@@ -41,8 +41,8 @@ app.get('/', (req, res) => {
       res.send("Welcome to node js learning");
 });
 
-//users basic routes
-app.get('/user', userRouters);
+//users routes
+app.use('/api/users', userRouters);
 
 //products routes 
 app.use('/api/products', productRouters);

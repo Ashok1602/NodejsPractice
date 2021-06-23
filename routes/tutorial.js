@@ -1,20 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const TutorialController = require("../controllers/tutorial");
+const checkAuth = require('../middleware/check-auth');
 
+router.get('/', checkAuth, TutorialController.getTutoriales);
 
-router.get('/', TutorialController.getTutoriales);
-
-router.get('/:tutorialId', TutorialController.getTutorialById);
+router.get('/:tutorialId',checkAuth, TutorialController.getTutorialById);
 
 router.get('/getTutorialByTitle/:title', TutorialController.getTutorialByTitle);
 
-router.post('/add', TutorialController.addTutorial);
+router.post('/add',checkAuth,  TutorialController.addTutorial);
 
-router.patch('/:tutorialId', TutorialController.updateTutorial);
+router.patch('/:tutorialId', checkAuth,  TutorialController.updateTutorial);
 
-router.delete('/:tutorialId', TutorialController.deleteTutorial);
+router.delete('/:tutorialId', checkAuth,  TutorialController.deleteTutorial);
 
-router.get('/deleteAll', TutorialController.deleteAll);
+router.get('/deleteAll', checkAuth, TutorialController.deleteAll);
 
 module.exports = router;
