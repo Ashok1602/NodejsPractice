@@ -1,18 +1,23 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const cors = require("cors");
 
 const userRouters = require('./routes/users');
 const productRouters = require('./routes/products');
 const tutorialRouters = require('./routes/tutorial');
 
-
-var corsOptions = {
-      origin: "http://localhost:8888"
-};
-    
-app.use(cors(corsOptions));
+//CORS(CORS ORIGIN RESOURCE SHARING) handling
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); //instead of * you can give specific url also
+  res.header("Access-Control-Allow-Headers", "*"); //you can also mention (Origin,X-Requested-With,Content-Type,Accept,Authorization)
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "PUT,PATCH,DELETE,POST,GET");
+    return res.status(200).json({});
+  }
+  //here we are blocking after this middleware,so options is not occured,then our routes should take care
+  //so excecution should move to below routes
+  next();
+});
 
 const path = require('path');
 const sendMail = require('./sendMail');
