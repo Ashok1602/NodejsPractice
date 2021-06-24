@@ -39,7 +39,7 @@ mongoose.connect('mongodb://localhost:27017/company', {useNewUrlParser: true, us
   if (err) {
         console.log(err);
   } else {
-        console.log("mongo DB connection successful");
+        console.log("mongo DB connection successfull");
   }
 });
 
