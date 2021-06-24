@@ -6,7 +6,8 @@ exports.addProduct = (req, res) => {
        name: req.body.name,
        price: req.body.price,
        description: req.body.description,
-       isnew: req.body.isnew
+       isnew: req.body.isnew,
+       productImage: req.file.path,
    });
    product
     .save()

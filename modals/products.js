@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
   const productShema = new Schema({
-    name:  String,
-    price: Number,
-    description: String,
-    isnew: {type: Boolean, default: false }
+    name:  {type: String },
+    price: {type: Number },
+    description: {type: String },
+    isnew: {type: Boolean, default: false },
+    productImage: { type: String }
   }, { timestamps: {} });
 
 //   console.log(productShema.path('name').instance); // 'String'

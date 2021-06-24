@@ -6,6 +6,12 @@ const userRouters = require('./routes/users');
 const productRouters = require('./routes/products');
 const tutorialRouters = require('./routes/tutorial');
 
+const path = require('path');
+const sendMail = require('./sendMail');
+
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 //CORS(CORS ORIGIN RESOURCE SHARING) handling
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*"); //instead of * you can give specific url also
@@ -19,17 +25,12 @@ app.use((req, res, next) => {
   next();
 });
 
-const path = require('path');
-const sendMail = require('./sendMail');
-
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
-
 // if express 4.16+ we can replace these instead of body parser
 //parsing data
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+//for swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 //mongo DB connection
@@ -45,6 +46,9 @@ mongoose.connect('mongodb://localhost:27017/company', {useNewUrlParser: true, us
 app.get('/', (req, res) => {
       res.send("Welcome to node js learning");
 });
+
+//this will make update folder publicly,this is static methos
+app.use("/uploads", express.static("uploads"));
 
 //users routes
 app.use('/api/users', userRouters);
