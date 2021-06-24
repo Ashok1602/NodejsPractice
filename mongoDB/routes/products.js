@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require("multer");
 const ProductController = require("../controllers/products");
-const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../../middleware/check-auth');
 
 
 //here we are defining the storage(dest and filename) of file
