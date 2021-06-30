@@ -1,10 +1,9 @@
-const Sequelize = require("sequelize");
 const express = require("express");
 const app = express();
-const database_stuff = require("./db_config");
-// const morgan = require("morgan");
+const sequelizeConnection = require("./db_config");
 
-const productsRoute = require("./sequalize/routes/products");
+const Products = require("./modals/products");
+const Orders = require("./modals/orders");
 
 //defining morgan
 // app.use(morgan("dev"));
@@ -29,29 +28,18 @@ app.use((req, res, next) => {
 });
 
 
-//connection
-const connection = new Sequelize(
-    database_stuff.db_name,
-    database_stuff.userName,
-    database_stuff.password,
-    {
-      dialect: database_stuff.dialect,
-    }
-  );
-  
-  const Db = {};
-  
-  Db.connection = connection;
-  Db.Sequalize = Sequelize;
-  
-  Db.products = require("../models/products")(connection, Sequelize);
+Orders.hasMany(Products);
 
-  Db.connection.sync();
+sequelizeConnection.sync({force: true}).then((result) => {
+  console.log(result);
+}).catch((error) => {
+  console.log(error);
+})
 
-app.use("/products", productsRoute);
 
-// //you need to remove this
-// app.use("/getPersons", personsRoute);
+app.use("/products", Products);
+
+app.use("/orders", Orders);
 
 //error handling
 app.use((req, res, next) => {

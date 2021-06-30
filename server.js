@@ -1,6 +1,7 @@
 const http = require("http");
 
-const app = require("./mongoDB/app"); //for mongo db
+// const app = require("./mongoDB/app"); //for mongo db
+const app = require("./mysqlDB/app"); //for sql db
 
 const port = process.env.PORT || 8888;
 

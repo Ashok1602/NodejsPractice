@@ -1,9 +1,14 @@
-const dataBaseStuff = {
-    db_name: "demo_scheme",
-    userName: "root",
-    password: "root",
+const Sequelize = require("sequelize");
+
+//connection
+const sequelizeConnection = new Sequelize(
+  "demo_scheme",
+  "root",
+  "root",
+  {
     dialect: "mysql",
-  };
-  
-  module.exports = dataBaseStuff;
+  }
+);
+
+module.exports = sequelizeConnection;
   

@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const sequelizeConnection = require("../db_config");
 
-const Products = sequelizeConnection.define("products", {
+const Orders = sequelizeConnection.define("orders", {
       id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -19,23 +19,11 @@ const Products = sequelizeConnection.define("products", {
           },
         },
       },
-      description: {
+      total: {
         type: Sequelize.STRING,
-        validate: {
-          len: {
-            args: [5, 150],
-            msg: "Please enter title value between 5 to 50 chars",
-            startsWithUpper: (bodyVal) => {
-              const first = bodyVal.charAt(0);
-              const startsWithUpper = first === first.toUppercase();
-              if (!startsWithUpper) {
-                throw new Error("");
-              }
-            },
-          },
-        },
+        allowNull: false
       },
     });
     
-module.exports = Products;
+module.exports = Orders;
   
