@@ -2,8 +2,8 @@ const express = require("express");
 const app = express();
 const Db = require("./modals");
 
-const Products = require("./modals/products");
-const Orders = require("./modals/orders");
+const ProductRoutes = require("./routes/products");
+const OrderRoutes = require("./routes/orders");
 
 //defining morgan
 // app.use(morgan("dev"));
@@ -27,16 +27,16 @@ app.use((req, res, next) => {
   next();
 });
 
-Db.connection.sync({force: true}).then((result) => {
+Db.connection.sync().then((result) => {
   console.log('Connection has been established successfully.');
 }).catch((error) => {
-  console.error('Unable to connect to the database:', err);
+  console.error('Unable to connect to the database:', error);
 })
 
 
-app.use("/products", Products);
+app.use("/products", ProductRoutes);
 
-app.use("/orders", Orders);
+app.use("/orders", OrderRoutes);
 
 //error handling
 app.use((req, res, next) => {

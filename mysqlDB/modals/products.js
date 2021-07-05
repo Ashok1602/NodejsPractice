@@ -1,6 +1,5 @@
-module.exports = (Connection, Sequelize) => {
-  // console.log(Connection);
-  const Products = Connection.define("products", {
+module.exports = (connection, Sequelize) => {
+  const Products = connection.define("products", {
     id: {
       type: Sequelize.INTEGER,
       autoIncrement: true,
@@ -34,6 +33,9 @@ module.exports = (Connection, Sequelize) => {
         },
       },
     },
+    price: {
+      type: Sequelize.INTEGER,
+    }
   });
   return Products;
 };

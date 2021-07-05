@@ -21,7 +21,7 @@ module.exports = (Connection, Sequelize) => {
       },
     },
     total: {
-      type: Sequelize.STRING,
+      type: Sequelize.INTEGER,
       allowNull: false
     },
   });
