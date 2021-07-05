@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const sequelizeConnection = require("./db_config");
+const Db = require("./modals");
 
 const Products = require("./modals/products");
 const Orders = require("./modals/orders");
@@ -27,13 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
-Orders.hasMany(Products);
-
-sequelizeConnection.sync({force: true}).then((result) => {
-  console.log(result);
+Db.connection.sync({force: true}).then((result) => {
+  console.log('Connection has been established successfully.');
 }).catch((error) => {
-  console.log(error);
+  console.error('Unable to connect to the database:', err);
 })
 
 
